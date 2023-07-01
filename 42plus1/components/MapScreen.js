@@ -1,10 +1,10 @@
 import AvatarComponent from "../section/AvatarComponent";
 import {Wrapper} from "@googlemaps/react-wrapper";
-import {useEffect, useRef, useState} from "react";
-import {AmbientLight, Matrix4, PerspectiveCamera, Scene, WebGLRenderer} from "three";
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+import {useRef, useState} from "react";
 import {View} from "react-native";
 import NavBar from "../section/NavBar";
+import {AmbientLight, Matrix4, PerspectiveCamera, Scene, WebGLRenderer} from "three";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 
 export default function MapScreen({navigation}) {
     // https://maps.googleapis.com/maps/api/js?key=AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ&libraries=places&callback=initMap
@@ -59,7 +59,14 @@ function createOverlay(map) {
         radius: 50000,
         type: "museum",
         openNow: true
-    }, (o) => console.log(o));
+    }, (o) => {
+        o.forEach(m => {
+            console.log(m)
+            new window.google.maps.Marker({
+                position: m.geometry.location
+            }).setMap(map);
+        })
+    });
 
     overlay.onAdd = () => {
         scene = new Scene();
