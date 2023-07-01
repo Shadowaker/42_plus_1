@@ -9,7 +9,6 @@ export default function MapScreen({navigation}) {
     return <>
         <AvatarComponent />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>MapScreen</Text>
             <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"}>
                 <MyMap/>
             </Wrapper>
