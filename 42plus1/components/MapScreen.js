@@ -1,13 +1,19 @@
+import AvatarComponent from "../section/AvatarComponent";
 import {Wrapper} from "@googlemaps/react-wrapper";
 import {useEffect, useRef, useState} from "react";
 import {AmbientLight, Matrix4, PerspectiveCamera, Scene, WebGLRenderer} from "three";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
+import {Text, View} from "react-native";
 
 export default function MapScreen({navigation}) {
     return <>
-        <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"}>
-            <MyMap/>
-        </Wrapper>
+        <AvatarComponent />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>MapScreen</Text>
+            <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"}>
+                <MyMap/>
+            </Wrapper>
+        </View>
     </>
 }
 

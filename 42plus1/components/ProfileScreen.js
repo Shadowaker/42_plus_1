@@ -1,4 +1,4 @@
-export default function ProfileScreen ({navigation}) {
+export default function ProfileScreen ({ navigation }) {
     return (
         <>ProfileScreen</>
     )
