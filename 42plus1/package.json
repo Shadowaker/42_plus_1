@@ -13,6 +13,7 @@
     "@googlemaps/react-wrapper": "^1.1.35",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
+    "@react-three/fiber": "^8.13.4",
     "@ubilabs/threejs-overlay-view": "^0.7.1",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",

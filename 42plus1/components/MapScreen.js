@@ -6,10 +6,12 @@ import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
 import {Text, View} from "react-native";
 
 export default function MapScreen({navigation}) {
+    // https://maps.googleapis.com/maps/api/js?key=AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ&libraries=places&callback=initMap
+
     return <>
-        <AvatarComponent />
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"}>
+        <AvatarComponent/>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"} libraries={["places"]}>
                 <MyMap/>
             </Wrapper>
         </View>
@@ -30,10 +32,6 @@ function MyMap() {
     const ref = useRef();
     const overlayRef = useRef();
 
-    useEffect(() => {
-
-    }, []);
-
     navigator.geolocation.getCurrentPosition((data) => {
         mapOptions.center.lat = data.coords.latitude;
         mapOptions.center.lng = data.coords.longitude;
@@ -52,6 +50,14 @@ function MyMap() {
 function createOverlay(map) {
     const overlay = new window.google.maps.WebGLOverlayView();
     let renderer, scene, camera, loader;
+
+    const service = new window.google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: mapOptions.center,
+        radius: 50000,
+        type: "museum",
+        openNow: true
+    }, (o) => console.log(o));
 
     overlay.onAdd = () => {
         scene = new Scene();
