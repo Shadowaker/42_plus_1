@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
-    "@googlemaps/js-api-loader": "^1.16.2",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
+    "@ubilabs/threejs-overlay-view": "^0.7.1",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
