@@ -3,7 +3,8 @@ import {Wrapper} from "@googlemaps/react-wrapper";
 import {useEffect, useRef, useState} from "react";
 import {AmbientLight, Matrix4, PerspectiveCamera, Scene, WebGLRenderer} from "three";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader";
-import {Text, View} from "react-native";
+import {View} from "react-native";
+import NavBar from "../section/NavBar";
 
 export default function MapScreen({navigation}) {
     // https://maps.googleapis.com/maps/api/js?key=AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ&libraries=places&callback=initMap
@@ -15,6 +16,7 @@ export default function MapScreen({navigation}) {
                 <MyMap/>
             </Wrapper>
         </View>
+        <NavBar/>
     </>
 }
 

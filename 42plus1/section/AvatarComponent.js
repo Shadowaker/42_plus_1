@@ -23,6 +23,8 @@ export default function AvatarComponent () {
 
 const styles = StyleSheet.create({
       avatarContainer: {
+        position: 'absolute',
+        zIndex: 1,
         margin: 10,
         borderWidth: 2,
         borderColor: 'white',
