@@ -64,6 +64,5 @@ const styles = StyleSheet.create({
 	},
 	view: {
 		height: '100vh',
-
 	}
 });
