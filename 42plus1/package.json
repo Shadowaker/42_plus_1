@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@googlemaps/three": "^4.0.2",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-three/fiber": "^8.13.4",

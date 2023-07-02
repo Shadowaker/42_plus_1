@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
         zIndex: 1,
         margin: 10,
         borderWidth: 2,
-        borderColor: 'white',
-        backgroundColor: 'white',
+        borderColor: 'rgba(255,255,255,0.7)',
+        backgroundColor: 'rgba(255,255,255,0.7)',
         borderRadius: 999,
         padding: 2,
         elevation: 4, // Aggiunge l'ombra solo per Android (Richiede l'API 21+)
