@@ -4,7 +4,7 @@ import {Box, Card, CardContent, CardMedia, IconButton, Typography} from "@mui/ma
 export default function BookmarkScreen() {
     return <>
         <ScrollView>
-            <Card sx={{ display: 'flex' }}>
+            <Card sx={{ display: 'flex' , marginBottom: "5px"}}>
                 <CardMedia
                     component="img"
                     sx={{ width: 151 }}
