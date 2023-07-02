@@ -12,7 +12,7 @@ export default function MapScreen({navigation}) {
     return <>
         <AvatarComponent/>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"} libraries={["places"]}>
+            <Wrapper apiKey={"AIzaSyAAO0GwflDMHg1WuWpvxQATo6dhA6Y7cIQ"} libraries={["places", "marker"]} >
                 <MyMap/>
             </Wrapper>
         </View>
@@ -22,9 +22,11 @@ export default function MapScreen({navigation}) {
 
 const mapOptions = {
     mapId: "5cc5baf1cb92354e",
-    center: {lat: 43.661036, lng: -79.391277},
-    zoom: 18,
+    // 40.84211047755825, 14.2494579628946
+    center: {lat: 40.84211047755825, lng: 14.2494579628946},
+    zoom: 17,
     disableDefaultUI: true,
+    clickableIcons: false,
     heading: 25,
     tilt: 70
 };
@@ -35,8 +37,8 @@ function MyMap() {
     const overlayRef = useRef();
 
     navigator.geolocation.getCurrentPosition((data) => {
-        mapOptions.center.lat = data.coords.latitude;
-        mapOptions.center.lng = data.coords.longitude;
+        /*mapOptions.center.lat = data.coords.latitude;
+        mapOptions.center.lng = data.coords.longitude;*/
 
         if (!overlayRef.current) {
             const instance = new window.google.maps.Map(ref.current, mapOptions);
@@ -53,6 +55,9 @@ function createOverlay(map) {
     const overlay = new window.google.maps.WebGLOverlayView();
     let renderer, scene, camera, loader;
 
+    const infoWindow = new window.google.maps.InfoWindow({
+        disableAutoPan: true
+    });
     const service = new window.google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: mapOptions.center,
@@ -62,9 +67,20 @@ function createOverlay(map) {
     }, (o) => {
         o.forEach(m => {
             console.log(m)
-            new window.google.maps.Marker({
-                position: m.geometry.location
-            }).setMap(map);
+
+            const marker = new google.maps.marker.AdvancedMarkerElement({
+                position: {
+                    lat: m.geometry.location.lat(),
+                    lng: m.geometry.location.lng()
+                },
+                map,
+                title: m.name
+            });
+            marker.addListener('click', ({ domEvent, latLng }) => {
+                infoWindow.close();
+                infoWindow.setContent(marker.title);
+                infoWindow.open(marker.map, marker);
+            });
         })
     });
 
@@ -102,6 +118,7 @@ function createOverlay(map) {
     };
 
     overlay.onDraw = ({transformer}) => {
+        mapOptions.tilt = 70;
         const matrix = transformer.fromLatLngAltitude({
             lat: mapOptions.center.lat,
             lng: mapOptions.center.lng,

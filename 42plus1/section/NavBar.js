@@ -84,6 +84,9 @@ export default function NavBar () {
                 size={30}
                 color="blue"
                 style={styles.icon}
+                onPress={() => {
+                    navigation.navigate("Bookmark")
+                }}
                 />
                 <Icon 
                 name="trophy"   

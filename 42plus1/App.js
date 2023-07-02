@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
 import MapScreen from './components/MapScreen';
 import ProfileScreen from './components/ProfileScreen';
+import BookmarkScreen from "./components/BookmarkScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
       }}>
         <Stack.Screen name="Map" component={MapScreen}/>
         <Stack.Screen name="Profile" component={ProfileScreen}/>
+        <Stack.Screen name="Bookmark" component={BookmarkScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
