@@ -11,7 +11,7 @@ export default function BookmarkScreen() {
                     image="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/P.Plebiscito_Napoli.jpg/1920px-P.Plebiscito_Napoli.jpg"
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
+                    <CardContent sx={{ display: 'flex', textAlign: 'center',  }}>
                         <Typography component="div" variant="h5" sx={{display:"flex", alignItems:"center"}} >
                             Piazza del Plebiscito
                         </Typography>
