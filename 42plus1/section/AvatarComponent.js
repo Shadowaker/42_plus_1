@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
 
-export default function AvatarComponent () {
+export default function AvatarComponent (props) {
     
     const navigation = useNavigation();
     
@@ -11,14 +11,19 @@ export default function AvatarComponent () {
     };
     
     return (
-            <Avatar
-                onPress={handleAvatarPress}
-                containerStyle={styles.avatarContainer}
-                avatarStyle={styles.avatar} 
-                rounded source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJczMizIBPUV0S8Z5iDmdia9BRfhTSsmpa6Aaiq0d6XQ&s' }} 
-                size="large" 
-            />
-    )
+			<Avatar
+				onPress={props?.avatarAction ? props.avatarAction : handleAvatarPress}
+				containerStyle={
+					props?.customStyle ? props.customStyle : styles.avatarContainer
+				}
+				avatarStyle={props?.customStyle ? null : styles.avatar}
+				rounded
+				source={{
+					uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJczMizIBPUV0S8Z5iDmdia9BRfhTSsmpa6Aaiq0d6XQ&s",
+				}}
+				size={props?.size ? props.size : "large"}
+			/>
+		);
 }
 
 const styles = StyleSheet.create({
