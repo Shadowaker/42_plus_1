@@ -1,22 +1,40 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { StyleSheet } from "react-native";
 import { Icon } from "react-native-elements";
+import { Animated } from "react-native-web";
 
 export default function NavBar () {
     
     const navigation = useNavigation();
     
+    const RotElement = props => {
+        const rotation = useRef(new Animated.Value(0)).current; // Initial value for rotation: 0
+      
+        useEffect(() => {
+          Animated.timing(rotation, {
+            toValue: 180,
+            duration: 10000,
+            useNativeDriver: true,
+          }).start();
+        }, [rotation]);
+    }
+
     const handlePress = (path) => {
         navigation.navigate(path);
     };
+    
+    const [isPressed, setIsPressed] = useState(false);
+    const rotation = useRef(new Animated.Value(1)).current;
 
     const showBar = () => {
-        const newRotation = (rotation + 180) % 360;
-        setRotation(newRotation);
+        setIsPressed(!isPressed);
+        Animated.spring(rotation, {
+            toValue: isPressed ? 0 : 180, // Imposta la scala finale desiderata
+            useNativeDriver: true,
+          }).start();
     }
     
-    const [rotation, setRotation] = useState(0);
 
     const styles = StyleSheet.create({
         up: {
@@ -59,7 +77,7 @@ export default function NavBar () {
         }
       });
     return (
-        <div style={styles.container}>
+        <Animated.View style={styles.container}>
             <div style={styles.button}>
             <Icon 
                 name="angle-up"   
@@ -96,6 +114,6 @@ export default function NavBar () {
                 style={styles.icon}
                 />
             </div>
-        </div>
+        </Animated.View>
     )
 }

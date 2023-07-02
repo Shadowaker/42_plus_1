@@ -12,7 +12,7 @@ export default function BookmarkScreen() {
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h5">
+                        <Typography component="div" variant="h5" sx={{display:"flex", alignItems:"center"}} >
                             Piazza del Plebiscito
                         </Typography>
                     </CardContent>
